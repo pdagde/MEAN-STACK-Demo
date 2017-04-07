@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="meetupApp" style="padding-top: 50px;padding: 47px;">
+<head>
+    <meta charset="utf-8">
+    <title>Means Demo</title>
+</head>
+<body ng-controller="meetupController">
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-9">
+                <div class="panel panel-default" style="border: 2px solid #07a6aa">
+                    <div class="panel-heading"
+                         style="border: #07a6aa ;height: 39px; color: #fff; background-color: #07a6aa;font-weight: bold;text-align: center">
+                        Search Meetup Options
+                        <a class="pull-right"><i class="fa fa-times"
+                                                 aria-hidden="true"
+                                                 style="color: #fff"></i></a>
+                    </div>
+
+
+                    <div>
+
+                        <div class="col col-md-12">
+                            <div class="panel-body col col-md-6">
+                                <h5>
+                                    <div class="form-group" style="text-align: center">
+                                        <input ng-change="searchRegExp()"
+                                               style="width: 75%;height: 30px;text-align: center;border-radius: 5px;"
+                                               ng-model="query.name" placeholder="Enter meetup City Name">
+                                        <button style="border-radius: 5px;height: 35px;text-align: center"
+                                                ng-click="setCache();search()">Search
+                                        </button>
+                                    </div>
+                                </h5>
+                            </div>
+
+                            <div class="panel-body col col-md-6">
+                                <h5>
+                                    <div class="form-group" style="text-align: center">
+                                        <input style="width: 60%;height: 30px;text-align: center;border-radius: 5px;"
+                                               ng-model="meetupName" placeholder="Add meetup City">
+                                        <button style="border-radius: 5px;height: 35px;text-align: center"
+                                                ng-click="createMeetup()">Add
+                                        </button>
+                                    </div>
+                                </h5>
+                            </div>
+
+
+                            <!-- <div  class="col col-md-6" style="text-align: center;padding: 20px">
+                                 <form ng-submit="createMeetup()">
+                                     <input style="border-radius: 5px;height: 30px;text-align: center" type="text"
+                                            placeholder="Add meetup Options" ng-model="meetupName">
+                                     <button type="submit" style="border-radius: 5px;height: 35px;text-align: center">Add
+                                     </button>
+                                 </form>
+                             </div>-->
+                        </div>
+                        <div class="invoice" style="margin-top: 19px">
+                            <progressbar style="margin-bottom: 10px !important;height: 30%"
+                                         class="progress-striped active" animate="true"
+                                         max="100" value={{value}} type="success"></progressbar>
+                            <span> Progress.... ({{value}} / 100)% </span>
+                        </div>
+                        <h5>
+                            <div ng-if="iscache===1" style="color: #07a6aa;text-align: center">
+                                <b>Data coming from Cache Memory</b>
+                            </div>
+                        </h5>
+                        <h5>
+                            <div ng-if="iscache===0" style="color: #07a6aa ;text-align: center">
+                                <b>Data coming from API</b>
+                            </div>
+                        </h5>
+
+                        <table class="table table-bordered table-condensed table-striped" style="margin-top:2%;">
+                            <div>
+                                <div>
+                                    <tr>
+                                        <th style="background-color: #07a6aa;text-align: center;width:10%">Meetup Id
+                                        </th>
+                                        <th style="background-color: #07a6aa;text-align: center;width:9%">Meetup Name
+                                        </th>
+                                    </tr>
+                                </div>
+
+                                <tr style="background-color: aliceblue" ng-repeat="order in meetups">
+                                    <td style="text-align: center">{{order._id? order._id : 'N/A'}}</td>
+                                    <td style="text-align: center">{{order.name? order.name: 'N/A'}}</td>
+                                </tr>
+                            </div>
+                        </table>
+                        <div style="text-align: center">
+                            <button ng-hide="currentPage < 1" ng-click="search();currentPage=currentPage-1">
+                                Previous
+                            </button>
+                            {{currentPage+1}}/{{numberOfPages()}}
+                            <button ng-hide="currentPage >= totalrecord-1"
+                                    ng-click="search();currentPage=currentPage+1">
+                                Next
+                            </button>
+                        </div>
+                        <h5 style="text-align: center">Search Options</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="/js/controllers/meetupController.js"></script>
+<script type="text/javascript" src="/client/index.js"></script>
+<link href="/css/mean.css.js" rel="stylesheet">
+<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+<script data-require="angular.js@1.3.0" data-semver="1.3.0" src="https://code.angularjs.org/1.3.0/angular.js"></script>
+<script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script data-require="bootstrap@3.1.1" data-semver="3.1.1"
+        src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+<script src="script.js"></script>
+<script src="dirPagination.js"></script>
+
+</body>
+
+</html>
+
