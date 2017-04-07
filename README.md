@@ -6,6 +6,6 @@ to Run the Code
  - npm install
  - bower install
  - node server
+ mongorestore dump/
  
- 
-mongoimport --db github --collection user --type json --file repositories.json --jsonArray
+ node server.js
