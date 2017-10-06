@@ -23,6 +23,6 @@ app.post('/api/searchRegExp',meetupsController.searchRegExp);
  app.post('/api/storeData',meetupsController.storeData);
 app.listen(5000,function(){
  console.log("Welcome to Mean.. i m learning on port 5000");
-    console.log("type URL on Browser http://localhost:5000/")
+    console.log("type URL on Browser http://localhost:5000/ then u can get all information regarding to my sample application")
 })
 
